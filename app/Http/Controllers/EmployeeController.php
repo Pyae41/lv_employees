@@ -23,7 +23,7 @@ class EmployeeController extends Controller
     {
         //
         $employees = Employee::all();
-        if(Auth::user()->branch_id != null){
+        if(Auth::user()->branch->brach_name != 'Branch Manager'){
             $employees = Employee::where('branch_id',Auth::user()->branch_id)->get();
         }
         return view('employee.index')
