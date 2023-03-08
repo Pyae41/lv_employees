@@ -22,9 +22,11 @@ class EmployeeController extends Controller
     public function index()
     {
         //
-        $employees = Employee::all();
-        if(Auth::user()->branch->brach_name != 'Branch Manager'){
-            $employees = Employee::where('branch_id',Auth::user()->branch_id)->get();
+
+        if (Auth::user()->role == 'Branch Manager') {
+            $employees = Employee::where('branch_id', Auth::user()->branch_id)->get();
+        } else {
+            $employees = Employee::all();
         }
         return view('employee.index')
             ->with(['employees' => $employees]);
