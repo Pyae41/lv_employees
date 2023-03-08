@@ -19,7 +19,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'branch_id',
         'password',
+        'role',
     ];
 
     /**
@@ -42,7 +44,7 @@ class User extends Authenticatable
     ];
 
     public function branch(){
-        return $this->belongsTo(Branch::class);
+        return Branch::where('id',$this->branch_id)->get();
     }
 }
 

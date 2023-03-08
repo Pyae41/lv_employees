@@ -20,6 +20,18 @@
                         @endif
                     </div>
 
+
+                    <div class="form-group mb-3">
+                        <label for="" class="form-label">Employee Email</label>
+                        <input type="text" name="email" id=""
+                            class="form-control @if ($errors->has('email')) border border-danger @endif"
+                            placeholder="Enter Employee Name" value="{{ old('email') }}">
+                        @if ($errors->has('email'))
+                            <small class="text-danger">{{ $errors->first('email') }}</small>
+                        @endif
+                    </div>
+
+
                     @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Manager')
                         <div class="form-group">
                             <label for="" class="form-label">Branch Name</label>
@@ -33,6 +45,8 @@
                     @else
                         <input type="text" name="branch_id" id="" value="{{ auth()->user()->branch_id }}" hidden>
                     @endif
+                    <input type="password" name="password" id="" value="123456" hidden>
+                    <input type="text" name="role" id="" value="Employee" hidden>
                     <button type="submit" class="btn btn-success w-100">Create</button>
                 </form>
             </div>

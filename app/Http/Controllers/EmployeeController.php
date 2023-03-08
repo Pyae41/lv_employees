@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Branch;
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -56,7 +58,19 @@ class EmployeeController extends Controller
     public function store(EmployeeRequest $employeeRequest)
     {
         //
-        if (Employee::create($employeeRequest->except('_token'))) {
+        $user = [
+            'name' => $employeeRequest->name,
+            'email' => $employeeRequest->email,
+            'password' => Hash::make($employeeRequest->password),
+            'branch_id' => $employeeRequest->branch_id,
+            'role' => $employeeRequest->role,
+        ];
+        $employee = [
+            'name' => $employeeRequest->name,
+            'email' => $employeeRequest->email,
+            'branch_id' => $employeeRequest->branch_id,
+        ];
+        if (Employee::create($employee) && User::create($user)) {
             return redirect()->route('employee.index');
         }
     }

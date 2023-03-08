@@ -8,7 +8,7 @@
 
         <div class="card p-3 w-50 mx-auto mt-3">
             <div class="card-content">
-                <form action="{{ route('branch.create') }}" method="post">
+                <form action="{{ route('branch.store') }}" method="post">
                     @csrf
                     <div class="form-group mb-3">
                         <label for="" class="form-label">Branch Name</label>

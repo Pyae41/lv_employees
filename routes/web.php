@@ -38,6 +38,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function () {
 
     // employe
     Route::resource('/employee',EmployeeController::class);
+    // Route::resource('/employee',UserController::class);
 
     // branch
     Route::resource('/branch',BranchController::class);
