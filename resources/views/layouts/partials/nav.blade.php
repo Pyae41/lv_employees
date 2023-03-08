@@ -13,7 +13,7 @@
                     @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Manager')
                         <li><a href="{{ route('employee.index') }}" class="nav-link px-2 text-white">Employees</a></li>
                         <li><a href="{{ route('branch.index') }}" class="nav-link px-2 text-white">Branches</a></li>
-                    @else
+                    @elseif (auth()->user()->role == 'Branch Manager')
                         <li><a href="{{ route('employee.index') }}" class="nav-link px-2 text-white">Employees</a></li>
                     @endif
                 @endauth
